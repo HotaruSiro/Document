@@ -1,0 +1,114 @@
+﻿@model QLBanhang.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Suainf";
+    Layout = "~/Views/_LayoutUser.cshtml";
+}
+<div id="main-wrapper">
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <div class="col-md-5 col-8 align-self-center">
+                <h3 class="text-themecolor m-b-0 m-t-0">THÔNG TIN TÀI KHOẢN</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Hang")">Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href="@Url.Action("profile", "Nguoidung")">Thông tin tài khoản</a></li>
+                    <li class="breadcrumb-item active">Cập nhật tài khoản</li>
+                </ol>
+            </div>
+            @*<div class="col-md-7 col-4 align-self-center">
+                    <a href="@Url.Action("profile", new { id = Model.MaKH })" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">TRỞ VỀ</a>
+                </div>*@
+        </div>
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-5">
+                <div class="card">
+                    <div class="card-block">
+                        <center class="m-t-30">
+                            <img src="https://avatarfiles.alphacoders.com/840/84098.jpg" class="img-circle" width="150" />
+                            <br /><br />
+                            <h4 class="card-title m-t-10">@Html.DisplayFor(model => model.Taikhoan)</h4>
+                            <h6 class="card-subtitle">@Html.DisplayFor(model => model.HoTen)</h6>
+                            @*<div class="row text-center justify-content-md-center">
+                                    <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
+                                    <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
+                                </div>*@
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-7">
+                <div class="card">
+                    <div class="card-block">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.MaKH)
+                            <form class="form-horizontal form-material">
+                                <div class="form-group">
+                                    <label class="col-md-12">TÊN KHÁCH HÀNG</label>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.Taikhoan, new { htmlAttributes = new { @class = "form-control form-control-line", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.Taikhoan, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">TÊN TÀI KHOẢN</label>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control form-control-line" } })
+                                        @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">MẬT KHẨU</label>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.Matkhau, new { htmlAttributes = new { @class = "form-control form-control-line", Type = "password" } })
+                                        @Html.ValidationMessageFor(model => model.Matkhau, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">EMAIL</label>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", Type = "email" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">NGÀY SINH</label>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.Ngaysinh, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Ngaysinh, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">SỐ ĐIỆN THOẠI</label>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.DienthoaiKH, new { htmlAttributes = new { @class = "form-control", @maxlength = "11" } })
+                                        @Html.ValidationMessageFor(model => model.DienthoaiKH, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">ĐỊA CHỈ</label>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.DiachiKH, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DiachiKH, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <br />
+                                        <a href="@Url.Action("profile", new { id = Model.MaKH })" class="btn btn-success">Quay lại</a>
+                                        <input type="submit" value="Lưu" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down" />
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

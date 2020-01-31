@@ -1,0 +1,72 @@
+﻿@using QLBanhang.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<CTDONHANG>
+@{
+    ViewBag.Title = "tim_kiem_don_hang_";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Tìm Kiếm đơn hàng</h2>
+                        <p>Yêu cầu các quản trị viên bảo mật thông tin cá nhân riêng tư của khách hàng,miễn phạm lỗi.</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th> Mã đơn đặt hàng</th>
+                                    <th> Mã mặt hàng</th>
+                                    <th> Đơn giá</th>
+                                    <th> Số lượng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MaDDH)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MaMH)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Dongia)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Soluong)
+                                        </td>
+                                        <td>
+                                            <button class="btn-primary btn-md btn-block btn notika-add-todo waves-effect">@Html.ActionLink("Xóa", "XoaDH", new { id = item.MaDDH })</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th> Mã đơn đặt hàng</th>
+                                    <th> Mã mặt hàng</th>
+                                    <th> Đơn giá</th>
+                                    <th> Số lượng</th>
+                                </tr>
+                                @Html.PagedListPager(Model, page => Url.Action("tkxoa", new { page = page }))
+                            </tfoot>
+                        </table>
+                        <div class="col-md-4 col-sm-4 items-info"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</font></font></div>
+                        <div class="col-md-8 col-sm-8">
+                            <ul class="pull-right">
+                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @Html.PagedListPager(Model, page => Url.Action("tkxoa", new { page = page }))</font></font></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

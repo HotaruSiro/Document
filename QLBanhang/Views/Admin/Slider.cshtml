@@ -1,0 +1,78 @@
+﻿@model IEnumerable<QLBanhang.Models.SlideIndex>
+
+@{
+    ViewBag.Title = "Slider";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>XEM Slider</h2>
+                        <p>Yêu cầu các quản trị viên bảo mật thông tin cá nhân riêng tư của khách hàng,miễn phạm lỗi.</p>
+                        @*<a class="btn-primary btn-md btn-block btn notika-add-todo waves-effect" type="submit" href="@Url.Action("ThemmoiNCU", "Admin")">
+                                Thêm mới
+                            </a>*@
+                    </div>
+                    <div class="table-responsive">
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Slider Home</th>
+                                    <th>Slider_1</th>
+                                    <th>Slider_2</th>
+                                    <th>Slider_3</th>
+                                    <th>Slider_4</th>
+                                    <th>Slider_5</th>
+                                    <th>Slider_6</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a class="btn-primary btn-md btn-block btn notika-add-todo waves-effect" type="submit" href="@Url.Action("SuaSlider", "Admin", new { id = item.ID })">Thay đổi Slider</a>
+                                            @*<a class="btn-primary btn-md btn-block btn notika-add-todo waves-effect" type="submit" href="@Url.Action("XoaNCU","Admin", new { id = item.MaNCC})">Xóa</a>*@
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.ID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.Slide)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.Slide_1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.Slide_2)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.Slide_3)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.Slide_4)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.Slide_5)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.Slide_6)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

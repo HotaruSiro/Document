@@ -1,0 +1,49 @@
+﻿@using QLBanhang.Models
+@model List<Giohang>
+@{
+    ViewBag.Title = "ReviewGioHang";
+    Layout = null;
+}
+
+<div class="top-cart-block">
+    <div class="top-cart-info">
+        <a href="javascript:void(0);" class="top-cart-info-count">@ViewBag.Tongsoluong Sản Phẩm</a>
+        <a href="javascript:void(0);" class="top-cart-info-value">@String.Format("{0:0,0}", ViewBag.Tongtien)$</a>
+    </div>
+    <i class="fa fa-shopping-cart"></i>
+    <div class="top-cart-content-wrapper">
+        <div class="top-cart-content">
+            <ul class="scroller" style="height: 250px;">
+                @if (ViewBag.s == false)
+                {
+                    <li style="text-align:center">
+                        Chưa có sản phẩm nào được thêm vào giỏ!<br />
+                        <a href=@Url.Action("Xem_them","Hang")> Xin quý khách thêm hàng vào giỏ</a>
+                    </li>
+                }
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a href="@Url.Action("Details", "Hang", new { id = item.iMaMH })"><img src="~/Hinhanh/@item.sAnhbia" alt="error" width="37" height="34"></a>
+                        <span class="cart-content-count">x @item.iSoluong</span>
+                        <strong><a href="@Url.Action("Details","Hang", new { id =item.iMaMH})">@item.sTenMH</a></strong>
+                        @if (item.iKhuyenmai == 0)
+                        {
+                            <em>@String.Format("{0:0,0}", item.dDongia * item.iSoluong)$</em>
+                        }
+                        else
+                        {
+                            <em>@String.Format("{0:0,0}", item.dTienKM * item.iSoluong)$</em>
+                        }
+                        <a class="del-goods" @Html.ActionLink("Xóa", "XoaGiohang", new { @iMaSp = item.iMaMH })
+                    </li>
+                }
+            </ul>
+            <div class="text-right">
+                <a href="@Url.Action("Giohang", "Giohang")" class="btn btn-primary">Xem Cart</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

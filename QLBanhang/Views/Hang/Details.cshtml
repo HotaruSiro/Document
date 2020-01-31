@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_LayoutUser.cshtml";
+}
+
+<div class="main">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index","Hang")">Trang chủ</a></li>
+            <li><a href="#">Chi tiết sản phẩm</a></li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN SIDEBAR -->
+            <div class="sidebar col-md-3 col-sm-5">
+                <div class="list-group margin-bottom-25 sidebar-menu ">
+                    <li class="list-group-item clearfix dropdown open">
+                        <i class="fa fa-list"></i>Dòng sản phẩm
+                        <!-- BEGIN DROPDOWN MENU -->
+                        <ul class="dropdown-menu">
+                            <li class="list-group-item clearfix">@Html.Action("Chude", "Hang")</li>
+                        </ul>
+
+                        <!-- END DROPDOWN MENU -->
+
+                        <div class="sidebar-products clearfix">
+                            <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;color:crimson">Bán chạy nhất</font></font></h2>
+                            <div>
+                                @Html.Action("Index3", "Hang")
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-7">
+                <div class="product-page">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="product-main-image">
+                                <img src="~/Hinhanh/@Model.Anhbia" alt="@Model.TenMH" class="img-responsive">
+                            </div>
+                            <div class="product-other-images">
+                                @if (@Model.Anhphu1 != null)
+                                {
+                                    <a href="javascript:;"><img src="@Model.Anhphu1"></a>
+                                }
+                                @if (@Model.Anhphu2 != null)
+                                {
+                                    <a href="javascript:;"><img src="@Model.Anhphu2"></a>
+                                }
+                                @if (@Model.Anhphu3 != null)
+                                {
+                                    <a href="javascript:;"><img src="@Model.Anhphu3"></a>
+                                }
+                                <a href="@Url.Action("ImagesWith", "Hang", new {id=Model.MaMH})"><img src="~/Content/images.png" /></a>
+                            </div>
+
+                            @if (Model.Mac == true)
+                            {
+                                <div class="sticker sticker-new"></div>
+                            }
+                            @if (Model.Mac == false)
+                            {
+                                <div class="sticker sticker-sale"></div>
+                            }
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <h2>@Model.TenMH</h2>
+                            <div class="price-availability-block clearfix">
+                                <div class="price">
+                                    @if (Model.Mac == false)
+                                    {
+                                        var a = (Model.Khuyenmai * Model.Giaban) / 100;
+                                        <strong>@String.Format("{0:0,0}", Model.Giaban - a)<span> VNĐ</span></strong>
+                                        <em><span>@String.Format("{0:0,0}", Model.Giaban)</span>VNĐ</em>
+                                    }
+                                    else
+                                    {
+                                        <strong>@String.Format("{0:0,0}", Model.Giaban)<span> VNĐ</span></strong>
+                                    }
+                                </div>
+                                <div class="availability">
+                                    Xuất Xứ: <strong>@Model.Xuatxu</strong>
+                                </div>
+                            </div>
+                            <div class="product-page-options">
+                                <div class="pull-left">
+                                    <label class="control-label">Size:</label>
+                                    <select class="form-control input-sm">
+                                        @if (Model.Dungtich1 != null)
+                                        {
+                                            <option>@Model.Dungtich1 ml</option>
+                                        }
+                                        @if (Model.Dungtich2 != null)
+                                        {
+                                            <option>@Model.Dungtich2 ml</option>
+                                        }
+                                        @if (Model.Dungtich3 != null)
+                                        {
+                                            <option>@Model.Dungtich3 ml</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="pull-left">
+                                    <label class="control-label">Number:</label>
+                                    <select class="form-control input-sm">
+                                        <option>1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="product-page-cart">
+                                <a class="btn btn-primary" href="@Url.Action("ThemGiohang","GioHang",new { @iMaMH=@Model.MaMH,@strURL=Request.Url.ToString() })">Add to cart</a>
+                                <br />
+                                <br />
+                                <a href="@Model.Thanhtoantructuyen">
+                                    <img src="~/Hinhanh/muahang-l.png" />
+                                </a>
+                                <br />
+                                <br />
+                                <ul class="social-icons">
+                                    <li><a class="facebook" data-original-title="facebook" href="javascript:;"></a></li>
+                                    <li><a class="twitter" data-original-title="twitter" href="javascript:;"></a></li>
+                                    <li><a class="googleplus" data-original-title="googleplus" href="javascript:;"></a></li>
+                                    <li><a class="evernote" data-original-title="evernote" href="javascript:;"></a></li>
+                                    <li><a class="tumblr" data-original-title="tumblr" href="javascript:;"></a></li>
+                                </ul>
+                            </div>
+
+                            <div class="product-page-content">
+                                <ul id="myTab" class="nav nav-tabs ">
+                                    <li><a href="#Description" data-toggle="tab">Công dụng</a></li>
+                                    <li><a href="#Information" data-toggle="tab">Cách dùng</a></li>
+                                    <li><a href="#review" data-toggle="tab">Bình luận</a></li>
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                    <div class="tab-pane fade" id="Description">
+                                        <p>@Model.Mota</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="Information">
+                                        <p>@Model.Cachdung</p>
+                                    </div>
+                                    <div class="tab-pane fade active in" id="review">
+                                        <!--<p>There are no reviews for this product.</p>-->
+                                        <div id="fb-root"></div>
+                                        <script>
+                                            (function (d, s, id) {
+                                                var js, fjs = d.getElementsByTagName(s)[0];
+                                                if (d.getElementById(id)) return;
+                                                js = d.createElement(s); js.id = id;
+                                                js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=439006583205270&autoLogAppEvents=1';
+                                                fjs.parentNode.insertBefore(js, fjs);
+                                            }(document, 'script', 'facebook-jssdk'));</script>
+                                        <div class="fb-like" data-href="http://localhost:62968/Hang/Details/ + @Model.MaMH" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                                        <div class="fb-comments" data-href="http://localhost:62968/Hang/Details/ + @Model.MaMH " data-width="300" data-numposts="5"></div>
+                                        <!-- BEGIN FORM-->
+                                        <!-- END FORM-->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END CONTENT -->
+            <!-- END SIDEBAR & CONTENT -->
+            <!-- BEGIN SIMILAR PRODUCTS -->
+
+
+        </div>
+    </div>

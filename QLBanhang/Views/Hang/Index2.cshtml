@@ -1,0 +1,110 @@
+﻿
+@model IEnumerable<QLBanhang.Models.MATHANG>
+@{
+    ViewBag.Title = "Index2";
+    Layout = null;
+
+}
+
+<div class="owl-carousel owl-carousel3">
+    @{
+        var idd = 100000000;
+    }  
+    @helper Truncate(string input, int length)
+    {
+        if (input.Length < length)
+        {
+            @input
+        }
+        else
+        {
+            @input.Substring(0, length)<text>...</text>
+        }
+    }
+    @foreach (var mathang in Model)
+    {
+        if (mathang.Mac == false)
+        {
+            var a = (mathang.Khuyenmai * mathang.Giaban) / 100;
+            idd++;
+            <div>
+                <div class="product-item">
+                    <div class="pi-img-wrapper">
+                        <img alt="@mathang.TenMH" src="~/Hinhanh/@mathang.Anhbia" class="img-responsive">
+                        <div>
+                            <a href="~/Hinhanh/@mathang.Anhbia" class="btn btn-default fancybox-button">Zoom</a>
+                            <a href="#product-pop-up-@(idd)" class="btn btn-default fancybox-fast-view">View</a>
+                        </div>
+                    </div>
+                    <div id="product-pop-up-@(idd)" style="display: none; width: 700px;">
+                        <div class="product-page product-pop-up">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-3">
+                                    <div class="product-main-image">
+                                        <img src="~/Hinhanh/@mathang.Anhbia" alt="Cool green dress with red bell" class="img-responsive">
+                                    </div>
+                                    <div class="product-other-images">
+                                        <a href="javascript:;"><img src="@mathang.Anhphu1"></a>
+                                        <a href="javascript:;"><img src="@mathang.Anhphu2"></a>
+                                        <a href="javascript:;"><img src="@mathang.Anhphu3"></a>
+                                        <a href="@Url.Action("ImagesWith", "Hang", new { id = mathang.MaMH })"><img src="~/Content/images.png" /></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-9">
+                                    <h2>@mathang.TenMH</h2>
+                                    <div class="price-availability-block clearfix">
+                                        <div class="price">
+                                            <strong>@String.Format("{0:0,0}", mathang.Giaban - a)<span> VNĐ</span></strong>
+                                            <em><span>@String.Format("{0:0,0}", mathang.Giaban)</span>VNĐ</em>
+                                        </div>
+                                        <div class="availability">
+                                            Xuất Xứ: <strong>@mathang.Xuatxu</strong>
+                                        </div>
+                                    </div>
+                                    <div class="description">
+                                        <p>@Truncate(mathang.Mota, 403)</p>
+                                    </div>
+                                    <div class="product-page-options">
+                                        <div class="pull-left">
+                                            <label class="control-label">Size:</label>
+                                            <select class="form-control input-sm">
+                                                @if (mathang.Dungtich1 != null)
+                                                {
+                                                    <option>@mathang.Dungtich1 ml</option>
+                                                }
+                                                @if (mathang.Dungtich2 != null)
+                                                {
+                                                    <option>@mathang.Dungtich2 ml</option>
+                                                }
+                                                @if (mathang.Dungtich3 != null)
+                                                {
+                                                    <option>@mathang.Dungtich3 ml</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="pull-left">
+                                            <label class="control-label">Number:</label>
+                                            <select class="form-control input-sm">
+                                                <option>1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="product-page-cart">
+                                        <a class="btn btn-primary" href="@Url.Action("ThemGiohang", "GioHang", new { @iMaMH = @mathang.MaMH, @strURL = Request.Url.ToString() })">Add to cart</a>
+                                        <a href="@Url.Action("Details", "Hang", new { id = mathang.MaMH })" class='btn btn-default'>More details</a>
+                                    </div>
+                                </div>
+                                <div class="sticker sticker-sale"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3><a href="@Url.Action("Details", "Hang", new { id = mathang.MaMH })">@mathang.TenMH </a></h3>
+                    <div class="sticker sticker-sale"></div>
+                    <div class="pi-price">@String.Format("{0:0,0}", mathang.Giaban - a) VNĐ</div>
+                    <em><span><font style="vertical-align: inherit;color:blue"><font style="vertical-align: inherit;">-@mathang.Khuyenmai%</font></font></span></em>
+                    <a class="btn btn-default add2cart" href="@Url.Action("ThemGiohang", "GioHang", new { @iMaMH = @mathang.MaMH, @strURL = Request.Url.ToString() })">Add to cart</a>
+                </div>
+            </div>
+        }
+    }
+</div>

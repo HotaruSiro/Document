@@ -1,0 +1,533 @@
+﻿@model QLBanhang.Models.MATHANG
+
+@{
+    ViewBag.Title = "ThemmoiMH";
+    Layout = "~/views/shared/_layoutadmin.cshtml";
+}
+<!-- Breadcomb area Start-->
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>SẢN PHẨM</h2>
+                                    <p>Chào mừng đền với sản phẩm <span class="bread-ntd">Natruliss</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+                            <div class="breadcomb-report">
+                                <button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcomb area End-->
+@using (Html.BeginForm("ThemmoiMH", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <!-- Form Element area Start-->
+    <div class="form-element-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list">
+                        <div class="basic-tb-hd">
+                            <h2>Thêm sản phẩm</h2>
+                            <p>Điền thông tin đầy đủ và kiểm tra kỹ thông tin trước khi thêm sản phẩm.</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Tên sản phẩm</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="TenMH" placeholder="Tên sản phẩm" maxlength="100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Giá bán</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Giaban" placeholder="Giá bán" maxlength="8">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Tải ảnh</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="nk-int-st">
+                                        <label title="Upload image file" for="inputImage" class="btn btn-primary img-cropper-cp">
+                                            <input type="file" name="fileUpload">
+                                            <i> @ViewBag.Thongbao</i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Ảnh phụ 1</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Anhphu1" placeholder="Ảnh phụ 1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Ảnh phụ 2</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Anhphu2" placeholder="Ảnh phụ 2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Ảnh phụ 3</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Anhphu3" placeholder="Ảnh phụ 3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Xuất xứ</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Xuatxu" placeholder="Xuất xứ" maxlength="50">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Ngày cập nhật</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="date" class="form-control" name="Ngaycapnhap">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Số lượng</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Soluongton" placeholder="Số lượng tồn" maxlength="5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="summernote-wrap mg-t-30">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Công dụng</h2>
+                                </div>
+                                @*  <div class="html-editor" name="Mota" placeholder="Công dụng"></div>
+                                    <div class="html-editor" name="Mota"></div>*@
+                                <textarea name="Mota" placeholder="Công dụng" rows="7" style="width:100%"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Cách dùng</h2>
+                                </div>
+                                @*<div class="html-editor" name="Cachdung" placeholder="Cách dùng"></div>
+                                    <div class="html-editor" name="Cachdung"></div>*@
+                                <textarea name="Cachdung" placeholder="Cách dùng" rows="7" style="width:100%"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Loại sản phẩm</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    @*@Html.DropDownList("MaCD")*@
+                                    @Html.DropDownListFor(model => model.MaCD, ViewBag.MaCD as SelectList, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Loại sản phẩm</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    @*@Html.DropDownList("MaNCC")*@
+                                    @Html.DropDownListFor(model => model.MaNCC, ViewBag.MaNCC as SelectList, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Gán mác</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    @Html.DropDownListFor(model => model.Mac, new SelectList(new[]{
+                                   new {Value = "", Text = "--không--" },
+                                   new {Value = "true", Text = "Mới" },
+                                   new {Value = "false", Text = "Giảm giá" },},
+                                   "Value",
+                                   "Text", Model), new { @class = "form-control" , @Onclick = "javascript:yesnoCheck()" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="ifYes" style="display:none">
+                                <div class="nk-int-mk">
+                                    <h2>Khuyến mãi</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Khuyenmai" placeholder="Khuyến mãi" maxlength="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>URL TT online</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Thanhtoantructuyen" placeholder="Thanh toán trực tuyến">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-element-list mg-t-30">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Dung tích 1</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Dungtich1" placeholder="Dung tích 1" maxlength="4">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Dung tích 2</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Dungtich2" placeholder="Dung tích 2" maxlength="4">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
+                                <div class="nk-int-mk">
+                                    <h2>Dung tích 3</h2>
+                                </div>
+                                <div class="form-group ic-cmp-int">
+                                    <div class="form-ic-cmp">
+                                        <i class="notika-icon notika-edit"></i>
+                                    </div>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="Dungtich3" placeholder="Dung tích 3" maxlength="4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="footer-copyright-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
+                            <div class="footer-copy-right">
+                                <input type="submit" value="THÊM MỚI" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Form Element area End-->
+
+}
+<!-- jquery
+    ============================================ -->
+<script src="~/Admin_Layout/js/vendor/jquery-1.12.4.min.js"></script>
+<!-- bootstrap JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/bootstrap.min.js"></script>
+<!-- wow JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/wow.min.js"></script>
+<!-- price-slider JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/jquery-price-slider.js"></script>
+<!-- owl.carousel JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/owl.carousel.min.js"></script>
+<!-- scrollUp JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/jquery.scrollUp.min.js"></script>
+<!-- meanmenu JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/meanmenu/jquery.meanmenu.js"></script>
+<!-- counterup JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/counterup/jquery.counterup.min.js"></script>
+<script src="~/Admin_Layout/js/counterup/waypoints.min.js"></script>
+<script src="~/Admin_Layout/js/counterup/counterup-active.js"></script>
+<!-- mCustomScrollbar JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<!-- sparkline JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/sparkline/jquery.sparkline.min.js"></script>
+<script src="~/Admin_Layout/js/sparkline/sparkline-active.js"></script>
+<!-- flot JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/flot/jquery.flot.js"></script>
+<script src="~/Admin_Layout/js/flot/jquery.flot.resize.js"></script>
+<script src="~/Admin_Layout/js/flot/flot-active.js"></script>
+<!-- knob JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/knob/jquery.knob.js"></script>
+<script src="~/Admin_Layout/js/knob/jquery.appear.js"></script>
+<script src="~/Admin_Layout/js/knob/knob-active.js"></script>
+<!-- Input Mask JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/jasny-bootstrap.min.js"></script>
+<!-- icheck JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/icheck/icheck.min.js"></script>
+<script src="~/Admin_Layout/js/icheck/icheck-active.js"></script>
+
+<!-- datapicker JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/datapicker/bootstrap-datepicker.js"></script>
+<script src="~/Admin_Layout/js/datapicker/datepicker-active.js"></script>
+<!-- bootstrap select JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/bootstrap-select/bootstrap-select.js"></script>
+<!--  color-picker JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/color-picker/farbtastic.min.js"></script>
+<script src="~/Admin_Layout/js/color-picker/color-picker.js"></script>
+<!--  notification JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/notification/bootstrap-growl.min.js"></script>
+<script src="~/Admin_Layout/js/notification/notification-active.js"></script>
+<!--  summernote JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/summernote/summernote-updated.min.js"></script>
+<script src="~/Admin_Layout/js/summernote/summernote-active.js"></script>
+<!-- dropzone JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/dropzone/dropzone.js"></script>
+<!--  wave JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/wave/waves.min.js"></script>
+<script src="~/Admin_Layout/js/wave/wave-active.js"></script>
+<!--  chosen JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/chosen/chosen.jquery.js"></script>
+<!--  Chat JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/chat/jquery.chat.js"></script>
+<!--  todo JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/todo/jquery.todo.js"></script>
+<!-- plugins JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/plugins.js"></script>
+<!-- main JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/main.js"></script>
+
+<!-- Google Fonts
+    ============================================ -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+<!-- Bootstrap CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/bootstrap.min.css">
+<!-- font awesome CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/font-awesome.min.css">
+<!-- owl.carousel CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/owl.carousel.css">
+<link rel="stylesheet" href="~/Admin_Layout/css/owl.theme.css">
+<link rel="stylesheet" href="~/Admin_Layout/css/owl.transitions.css">
+<!-- meanmenu CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/meanmenu/meanmenu.min.css">
+<!-- animate CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/animate.css">
+<!-- summernote CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/summernote/summernote.css">
+<!-- normalize CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/normalize.css">
+<!-- mCustomScrollbar CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/scrollbar/jquery.mCustomScrollbar.min.css">
+<!-- Notika icon CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/notika-custom-icon.css">
+<!-- bootstrap select CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/bootstrap-select/bootstrap-select.css">
+<!-- datapicker CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/datapicker/datepicker3.css">
+<!-- Color Picker CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/color-picker/farbtastic.css">
+<!-- main CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/chosen/chosen.css">
+<!-- notification CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/notification/notification.css">
+<!-- dropzone CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/dropzone/dropzone.css">
+<!-- wave CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/wave/waves.min.css">
+<!-- main CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/main.css">
+<!-- style CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/style.css">
+<!-- responsive CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/responsive.css">
+<!-- modernizr JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/vendor/modernizr-2.8.3.min.js"></script>
+
+<script type="text/javascript">
+    function yesnoCheck() {
+        if ((document.getElementById('Mac').value)=="false") {
+            document.getElementById('ifYes').style.display = 'block';
+        }
+        else document.getElementById('ifYes').style.display = 'none';
+    }
+</script>

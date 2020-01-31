@@ -1,0 +1,123 @@
+﻿@model QLBanhang.Models.SlideIndex
+
+@{
+    ViewBag.Title = "SuaSlider";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>IMAGES</h2>
+                                    <p>Chào mừng đền với sản phẩm <span class="bread-ntd">Natruliss</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+                            <div class="breadcomb-report">
+                                <button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Thay đổi slider</h2>
+                        <p>Yêu cầu các quản trị viên bảo mật thông tin cá nhân riêng tư của khách hàng.</p>
+                        @Html.ActionLink("Trở về", "Slider")
+                    </div>
+                    <div class="table-responsive">
+                        @using (Html.BeginForm("SuaSlider", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.ID)
+                            if (Model.ID == 1 || Model.ID == 12)
+                            {
+                                @Html.HiddenFor(model => model.Slide)
+                                <div class="form-group">
+                                    <p class="control-label col-md-2">Slide thứ nhất</p>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Slide_1, new { htmlAttributes = new { @class = "form-control" } })<br />
+                                        @Html.ValidationMessageFor(model => model.Slide_1, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p class="control-label col-md-2">Slide thứ hai</p><br />
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Slide_2, new { htmlAttributes = new { @class = "form-control" } })<br />
+                                        @Html.ValidationMessageFor(model => model.Slide_2, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p class="control-label col-md-2">Slide thứ ba</p><br />
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Slide_3, new { htmlAttributes = new { @class = "form-control" } })<br />
+                                        @Html.ValidationMessageFor(model => model.Slide_3, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p class="control-label col-md-2">Slide thứ tư</p><br />
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Slide_4, new { htmlAttributes = new { @class = "form-control" } })<br />
+                                        @Html.ValidationMessageFor(model => model.Slide_4, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p class="control-label col-md-2">Slide thứ năm</p><br />
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Slide_5, new { htmlAttributes = new { @class = "form-control" } })<br />
+                                        @Html.ValidationMessageFor(model => model.Slide_5, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p class="control-label col-md-2">Slide thứ sáu</p><br />
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Slide_6, new { htmlAttributes = new { @class = "form-control" } })<br />
+                                        @Html.ValidationMessageFor(model => model.Slide_6, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-group">
+                                    <p class="control-label col-md-2">Lưu tên file với tên<h2>@Model.Slide</h2></p>
+                                    <div class="col-md-10">
+                                        <label title="Upload image file" for="inputImage" class="btn btn-primary img-cropper-cp">
+                                            <input type="file" name="fileUpload" />
+                                            <p style="padding:0 10px; color:red">@ViewBag.Thongbao</p>
+                                            <img src="@Url.Content("~/slide/"+Model.Slide)" width="250px" />
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10" style="padding-top: 25px;">
+                                    <input type="submit" value="Lưu" class="btn btn-default" />
+                                </div>
+                            </div>
+                        }
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

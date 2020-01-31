@@ -1,0 +1,226 @@
+﻿@model IEnumerable<QLBanhang.Models.MATHANG>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutUser.cshtml";
+}
+<div class="page-slider margin-bottom-35">
+    <div id="carousel-example-generic" class="carousel slide carousel-slider">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <!-- First slide -->
+            <div class="item carousel-item-four active"></div>
+            <div class="item carousel-item-five"></div>
+            <div class="item carousel-item-six">
+                <div class="conetainer">
+                    <div class="carousel-position-four text-center">
+                        <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown"></h2>
+                        <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">
+                            Đừng tin vào lời nói <br />
+                            Mà hãy tin vào sự trải nghiệm sản phẩm của bạn
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="item carousel-item-seven"></div>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="prev">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+        <a class="right carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="next">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+<div class=main>
+    <div class="container">
+        <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN SALE PRODUCT -->
+            <div class="col-md-12 sale-product">
+                <b> <h2 style="color:midnightblue">SẢN PHẨM MỚI</h2></b><a href="@Url.Action("Xem_them","Hang")"><a2>xem thêm</a2></a>
+                <div class="owl-carousel owl-carousel5">
+                    @{
+                        var idd = 0;
+                    }
+                    @helper Truncate(string input, int length)
+                    {
+                        if (input.Length < length)
+                        {
+                            @input
+                        }
+                        else
+                        {
+                            @input.Substring(0, length)<text>...</text>
+                        }
+                    }
+                    @foreach (var mathang in Model)
+                    {
+                        var a = (mathang.Khuyenmai * mathang.Giaban) / 100;
+                        idd++;
+                        <div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img alt="@mathang.TenMH" src="~/Hinhanh/@mathang.Anhbia" class="img-responsive">
+                                    <div>
+                                        <a href="~/Hinhanh/@mathang.Anhbia" class="btn btn-default fancybox-button">Zoom</a>
+                                        <a href="#product-pop-up-@(idd)" class="btn btn-default fancybox-fast-view">View</a>
+                                    </div>
+                                </div>
+                                <div id="product-pop-up-@(idd)" style="display: none; width: 700px;">
+                                    <div class="product-page product-pop-up">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-3">
+                                                <div class="product-main-image">
+                                                    <img src="~/Hinhanh/@mathang.Anhbia" alt="Cool green dress with red bell" class="img-responsive">
+                                                </div>
+                                                <div class="product-other-images">
+                                                    @if (@mathang.Anhphu1 != null)
+                                                    {
+                                                        <a href="javascript:;"><img src="@mathang.Anhphu1"></a>
+                                                    }
+                                                    @if (@mathang.Anhphu2 != null)
+                                                    {
+                                                        <a href="javascript:;"><img src="@mathang.Anhphu2"></a>
+                                                    }
+                                                    @if (@mathang.Anhphu3 != null)
+                                                    {
+                                                        <a href="javascript:;"><img src="@mathang.Anhphu3"></a>
+                                                    }
+                                                    <a href="@Url.Action("ImagesWith", "Hang", new {id=mathang.MaMH})"><img src="~/Content/images.png" /></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-9">
+                                                <h2>@mathang.TenMH</h2>
+                                                <div class="price-availability-block clearfix">
+                                                    <div class="price">
+                                                        @if (mathang.Mac == false)
+                                                        {
+                                                            <strong>@String.Format("{0:0,0}", mathang.Giaban - a)<span> VNĐ</span></strong>
+                                                            <em><span>@String.Format("{0:0,0}", mathang.Giaban)</span>VNĐ</em>
+                                                        }
+                                                        else
+                                                        {
+                                                            <strong>@String.Format("{0:0,0}", mathang.Giaban)<span> VNĐ</span></strong>
+                                                        }
+                                                    </div>
+                                                    <div class="availability">
+                                                        Xuất Xứ: <strong>@mathang.Xuatxu</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="description">
+                                                    <p>@Truncate(mathang.Mota, 403)</p>
+                                                </div>
+                                                <div class="product-page-options">
+                                                    <div class="pull-left">
+                                                        <label class="control-label">Size:</label>
+                                                        <select class="form-control input-sm">
+                                                            @if (mathang.Dungtich1 != null)
+                                                            {
+                                                                <option>@mathang.Dungtich1 ml</option>
+                                                            }
+                                                            @if (mathang.Dungtich2 != null)
+                                                            {
+                                                                <option>@mathang.Dungtich2 ml</option>
+                                                            }
+                                                            @if (mathang.Dungtich3 != null)
+                                                            {
+                                                                <option>@mathang.Dungtich3 ml</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                    <div class="pull-left">
+                                                        <label class="control-label">Number:</label>
+                                                        <select class="form-control input-sm">
+                                                            <option>1</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="product-page-cart">
+                                                    <a class="btn btn-primary" href="@Url.Action("ThemGiohang","GioHang",new { @iMaMH=@mathang.MaMH,@strURL=Request.Url.ToString() })">Add to cart</a>
+                                                    <a href="@Url.Action("Details","Hang", new { id =mathang.MaMH})" class='btn btn-default'>More details</a>
+                                                </div>
+                                            </div>
+                                            @if (mathang.Mac == true)
+                                            {
+                                                <div class="sticker sticker-new"></div>
+                                            }
+                                            @if (mathang.Mac == false)
+                                            {
+                                                <div class="sticker sticker-sale"></div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3><a href="@Url.Action("Details", "Hang", new { id = mathang.MaMH })">@mathang.TenMH</a></h3>
+                                @if (mathang.Mac == false)
+                                {
+                                    <div class="sticker sticker-sale"></div>
+                                    <div class="pi-price">@String.Format("{0:0,0}", mathang.Giaban - a) VNĐ</div>
+                                    <em><span><font style="vertical-align: inherit;color:blue"><font style="vertical-align: inherit;">-@mathang.Khuyenmai%</font></font></span></em>
+                                }
+                                else
+                                {
+                                    <div class="pi-price">@String.Format("{0:0,0}", mathang.Giaban) VNĐ</div>
+                                }
+                                <a class="btn btn-default add2cart" href="@Url.Action("ThemGiohang", "GioHang", new { @iMaMH = @mathang.MaMH, @strURL = Request.Url.ToString() })">Add to cart</a>
+                                @if (mathang.Mac == true)
+                                {
+                                    <div class="sticker sticker-new"></div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row margin-bottom-40">
+            <div class="sidebar col-md-3 col-sm-4">
+                <ul class="list-group margin-bottom-25 sidebar-menu ">
+                    <li class="list-group-item clearfix dropdown open">
+                        <a>
+                            <i class="fa fa-list"></i>mặt hàng
+                        </a>
+                        <!-- BEGIN DROPDOWN MENU -->
+                        <ul class="dropdown-menu">
+                            <li class="list-group-item clearfix">@Html.Action("Chude", "Hang")</li>
+                        </ul>
+                </ul>
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-8">
+                <h2>SẢN PHẨM KHUYẾN MÃI</h2>
+                @Html.Action("Index2", "Hang")
+            </div>
+        </div>
+        <div class="row margin-bottom-35 ">
+            <!-- BEGIN TWO PRODUCTS -->
+            <div class="col-md-6 two-items-bottom-items">
+                <h2>SẢN PHẨM TIÊU BIỂU</h2>
+                <div class="owl-carousel owl-carousel2">
+                    @Html.Action("Index1", "Hang")
+                </div>
+            </div>
+            <!-- END TWO PRODUCTS -->
+            <!-- BEGIN PROMO -->
+            <div class="col-md-6 shop-index-carousel">
+                @Html.Action("SlideIndex", "Hang")
+            </div>
+            <!-- END PROMO -->
+        </div>
+    </div>
+</div>
+<div class="brands">
+    <div class="container">
+        @Html.Action("SlideMini", "Hang")
+    </div>
+    <!-- END TWO PRODUCTS & PROMO -->
+</div>

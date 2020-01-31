@@ -1,0 +1,85 @@
+﻿@model QLBanhang.Models.Image
+
+@{
+    ViewBag.Title = "xoa_image";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-form"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>IMAGES</h2>
+                                    <p>Chào mừng đền với sản phẩm <span class="bread-ntd">Natruliss</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+                            <div class="breadcomb-report">
+                                <button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>XÁC NHẬN THÔNG TIN IMAGE CẦN XÓA</h2>
+                        <h3> Bạn quyết định xóa image này?</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <div>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    Hình ảnh:
+                                </dt>
+                                <dd>
+                                    <img src="@Model.Id_image" alt="Lỗi tải ảnh" width="150" />
+                                </dd>
+                                <dt>
+                                    Tên hình:
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.Name_Image)
+                                </dd>
+                                <dt>
+                                    Ngày đăng:
+                                </dt>
+                                <dd>
+                                    @String.Format("{0:dd/MM/yyyy}", Model.Date)
+                                </dd>
+                            </dl>
+                            @Html.ActionLink("Quay lại", "xem_images")
+                        </div>
+                        <div>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="submit" value="Xoá" class="btn-primary" />
+                            }
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

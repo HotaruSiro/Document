@@ -1,0 +1,105 @@
+﻿
+@using PagedList.Mvc;
+@model PagedList.PagedList<QLBanhang.Models.KHACHHANG>
+@{
+    ViewBag.Title = "Kachhang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-windows"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>KHÁCH HÀNG</h2>
+                                    <p>Chào mừng đền với sản phẩm <span class="bread-ntd">Natruliss</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+                            <div class="breadcomb-report">
+                                <button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Thông tin khách hàng</h2>
+                        <p>Yêu cầu các quản trị viên bảo mật thông tin cá nhân riêng tư của khách hàng.</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Họ tên khách hàng</th>
+                                    <th>Mã khách hàng</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Địa chỉ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.HoTen)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MaKH)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DienthoaiKH)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Ngaysinh)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DiachiKH)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Họ tên khách hàng</th>
+                                    <th>Mã khách hàng</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Địa chỉ</th>
+                                </tr>
+                                @Html.PagedListPager(Model, page => Url.Action("Kachhang", new { page = page }))
+                            </tfoot>
+                        </table>
+                        <div class="col-md-4 col-sm-4 items-info"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</font></font></div>
+                        <div class="col-md-8 col-sm-8">
+                            <ul class="pull-right">
+                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @Html.PagedListPager(Model, page => Url.Action("Kachhang", new { page = page }))</font></font></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

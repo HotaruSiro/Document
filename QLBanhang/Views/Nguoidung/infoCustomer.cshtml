@@ -1,0 +1,62 @@
+﻿@using QLBanhang.Models
+@{
+    KHACHHANG kh = (KHACHHANG)Session["Taikhoan"];
+}
+<a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+<div id="product-pop-up" style="display: none; width: 700px;">
+    <div class="product-page product-pop-up">
+        <div class="panel-body row">
+            <div class="col-md-6 col-sm-6">
+                <h4 style="color:aqua;text-align:center">
+                    @ViewBag.Thongbao
+
+                </h4>
+                <table align="center">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.ValidationSummary(true)
+                        <tr style="height:40px">
+                            <td> Họ tên khách hàng: </td>
+                            <td style="font-weight:bold"> @kh.HoTen </td>
+                        </tr>
+                        /////////////////////
+                        <tr style="height:40px">
+                            <td> Email: </td>
+                            <td style="font-weight:bold"> @kh.Email</td>
+                        </tr>
+                        <tr style="height:40px">
+                            <td> Địa chỉ: </td>
+                            <td style="font-weight:bold"> @kh.DiachiKH</td>
+                        </tr>
+                        ////////////////
+                        <tr style="height:40px">
+                            <td> Điện thoại: </td>
+                            <td style="font-weight:bold"> @kh.DienthoaiKH </td>
+                        </tr>
+                        ///////////////////
+                        <tr style="height:40px">
+                            <td> Ngày đặt: </td>
+                            <td style="font-weight:bold"> @DateTime.Now.ToShortDateString() </td>
+                        </tr>
+                        /////////////
+                        <tr style="height:40px">
+                            <td> Ngày giao hàng: </td>
+                            <td style="font-weight:bold"><input type="date" name="Ngaygiao" /> </td>
+                        </tr>
+
+
+                        <tr style="height:40px">
+                            <td></td>
+                            <td>
+                                <input class="btn btn-primary " style="color:white" type="submit" value="Đồng Ý Đặt Hàng" />
+
+
+                            </td>
+                        </tr>
+
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

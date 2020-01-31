@@ -1,0 +1,21 @@
+﻿@model  IEnumerable<QLBanhang.Models.SlideIndex>
+@{
+    ViewBag.Title = "SlideMini";
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <div class="carousel-inner">
+        @if (item.ID == 12)
+        {
+            <div class="owl-carousel owl-carousel6-brands">
+                <img src="@item.Slide_1" />
+                <img src="@item.Slide_2" />
+                <img src="@item.Slide_3" />
+                <img src="@item.Slide_4" />
+                <img src="@item.Slide_4" />
+                <img src="@item.Slide_6" />
+            </div>
+        }
+    </div>
+}

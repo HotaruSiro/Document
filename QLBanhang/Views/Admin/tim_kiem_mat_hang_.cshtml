@@ -1,0 +1,231 @@
+﻿@using QLBanhang.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<QLBanhang.Models.MATHANG>
+@{
+    ViewBag.Title = "tim_kiem_mat_hang_";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+<style>
+    .den .dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate, .paging_simple_numbers {
+        display: none !important;
+    }
+</style>
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>Tìm kiếm sản phẩm</h2>
+                        <p>Yêu cầu các quản trị viên bảo mật thông tin cá nhân riêng tư của khách hàng.</p>
+                    </div>
+                    <div class="table-responsive den">
+                        <table id="data-table-basic" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Tên sản phẩm </th>
+                                    <th>Giá bán  </th>
+                                    <th>Công dụng    </th>
+                                    <th>Ảnh bìa  </th>
+                                    <th>Cách dùng   </th>
+                                    <th>Xuất xứ  </th>
+                                    <th>Ngày cập nhật </th>
+                                    <th>SL.Tồn </th>
+                                    <th>Tên chủ đề   </th>
+                                    <th>Tên NCC   </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TenMH)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Giaban)
+                                        </td>
+                                        <td>
+                                            @Truncate(item.Mota, 150)
+                                        </td>
+                                        <td>
+                                            <img src="@Url.Content("~/Hinhanh/" + item.Anhbia)" width="1600" />
+                                        </td>
+                                        <td>
+                                            @Truncate(item.Cachdung, 150)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Xuatxu)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Ngaycapnhap)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Soluongton)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CHUDE.TenChuDe)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NHACUNGUNG.TenNCC)
+                                        </td>
+                                        <td>
+                                            <a class="btn-primary btn-md btn-block btn notika-add-todo waves-effect" type="submit" href="@Url.Action("SuaMH","Admin",new { id = item.MaMH })">Sửa</a>
+                                            <a class="btn-primary btn-md btn-block btn notika-add-todo waves-effect" type="submit" href="@Url.Action("ChitietMH","Admin",new { id = item.MaMH })">Xem</a>
+                                            <a class="btn-primary btn-md btn-block btn notika-add-todo waves-effect" type="submit" href="@Url.Action("XoaMH","Admin",new { id = item.MaMH })">Xóa</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Tên sản phẩm </th>
+                                    <th>Giá bán  </th>
+                                    <th>Công dụng    </th>
+                                    <th>Ảnh bìa  </th>
+                                    <th>Cách dùng   </th>
+                                    <th>Xuất xứ  </th>
+                                    <th>Ngày cập nhật </th>
+                                    <th>SL.Tồn </th>
+                                    <th>Tên chủ đề   </th>
+                                    <th>Tên NCC   </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="col-md-4 col-sm-4 items-info"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</font></font></div>
+                    <div class="col-md-8 col-sm-8">
+                        <ul class="pull-right">
+                            <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @Html.PagedListPager(Model, page => Url.Action("Hang", new { page = page }))</font></font></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jquery
+    ============================================ -->
+<script src="~/Admin_Layout/js/vendor/jquery-1.12.4.min.js"></script>
+<!-- bootstrap JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/bootstrap.min.js"></script>
+<!-- wow JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/wow.min.js"></script>
+<!-- price-slider JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/jquery-price-slider.js"></script>
+<!-- owl.carousel JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/owl.carousel.min.js"></script>
+<!-- scrollUp JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/jquery.scrollUp.min.js"></script>
+<!-- meanmenu JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/meanmenu/jquery.meanmenu.js"></script>
+<!-- counterup JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/counterup/jquery.counterup.min.js"></script>
+<script src="~/Admin_Layout/js/counterup/waypoints.min.js"></script>
+<script src="~/Admin_Layout/js/counterup/counterup-active.js"></script>
+<!-- mCustomScrollbar JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<!-- sparkline JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/sparkline/jquery.sparkline.min.js"></script>
+<script src="~/Admin_Layout/js/sparkline/sparkline-active.js"></script>
+<!-- flot JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/flot/jquery.flot.js"></script>
+<script src="~/Admin_Layout/js/flot/jquery.flot.resize.js"></script>
+<script src="~/Admin_Layout/js/flot/flot-active.js"></script>
+<!-- knob JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/knob/jquery.knob.js"></script>
+<script src="~/Admin_Layout/js/knob/jquery.appear.js"></script>
+<script src="~/Admin_Layout/js/knob/knob-active.js"></script>
+<!--  Chat JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/chat/jquery.chat.js"></script>
+<!--  todo JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/todo/jquery.todo.js"></script>
+<!--  wave JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/wave/waves.min.js"></script>
+<script src="~/Admin_Layout/js/wave/wave-active.js"></script>
+<!-- plugins JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/plugins.js"></script>
+<!-- Data Table JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/data-table/jquery.dataTables.min.js"></script>
+<script src="~/Admin_Layout/js/data-table/data-table-act.js"></script>
+<!-- main JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/main.js"></script>
+
+<!-- Google Fonts
+    ============================================ -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+<!-- Bootstrap CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/bootstrap.min.css">
+<!-- font awesome CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/font-awesome.min.css">
+<!-- owl.carousel CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/owl.carousel.css">
+<link rel="stylesheet" href="~/Admin_Layout/css/owl.theme.css">
+<link rel="stylesheet" href="~/Admin_Layout/css/owl.transitions.css">
+<!-- meanmenu CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/meanmenu/meanmenu.min.css">
+<!-- animate CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/animate.css">
+<!-- normalize CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/normalize.css">
+<!-- wave CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/wave/waves.min.css">
+<link rel="stylesheet" href="~/Admin_Layout/css/wave/button.css">
+<!-- mCustomScrollbar CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/scrollbar/jquery.mCustomScrollbar.min.css">
+<!-- Notika icon CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/notika-custom-icon.css">
+<!-- Data Table JS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/jquery.dataTables.min.css">
+<!-- main CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/main.css">
+<!-- style CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/style.css">
+<!-- responsive CSS
+    ============================================ -->
+<link rel="stylesheet" href="~/Admin_Layout/css/responsive.css">
+<!-- modernizr JS
+    ============================================ -->
+<script src="~/Admin_Layout/js/vendor/modernizr-2.8.3.min.js"></script>

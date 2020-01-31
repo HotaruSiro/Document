@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Dangky";
+    Layout = null;
+}
+
+<div class="nk-form">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="input-group">
+            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
+            <div class="nk-int-st">
+                <input type="text" name="HotenKH" class="form-control" placeholder="Tên khách hàng" maxlength="60">
+                <i style="color:red">@ViewData["Loi1"]</i>
+            </div>
+        </div>
+        <div class="input-group mg-t-15">
+            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-house"></i></span>
+            <div class="nk-int-st">
+                <input type="text" name="TenDN" class="form-control" placeholder="Tên đăng nhập" maxlength="30">
+                <i style="color:red">@ViewData["Loi2"]</i>
+            </div>
+        </div>
+        <div class="input-group mg-t-15">
+            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-file"></i></span>
+            <div class="nk-int-st">
+                <input type="password" name="Matkhau" class="form-control" placeholder="Mật khẩu" maxlength="18">
+                <i style="color:red">@ViewData["Loi3"]</i>
+            </div>
+        </div>
+        <div class="input-group mg-t-15">
+            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-edit"></i></span>
+            <div class="nk-int-st">
+                <input type="password" name="Matkhaunhaplai" class="form-control" placeholder="Nhập lại mật khẩu" maxlength="18">
+                <i style="color:red">@ViewData["Loi4"]</i>
+            </div>
+        </div>
+        <div class="input-group mg-t-15">
+            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-mail"></i></span>
+            <div class="nk-int-st">
+                <input type="email" name="Email" class="form-control" placeholder="Email">
+                <i style="color:red">@ViewData["Loi5"]</i>
+            </div>
+        </div>
+        <div class="input-group mg-t-15">
+            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-map"></i></span>
+            <div class="nk-int-st">
+                <input type="text" name="Diachi" class="form-control" placeholder="Địa chỉ">
+                <i style="color:red">@ViewData["Loi7"]</i>
+            </div>
+        </div>
+        <div class="input-group mg-t-15">
+            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-phone"></i></span>
+            <div class="nk-int-st">
+                <input type="text" name="Dienthoai" id="myTextBox" maxlength="11" class="form-control" placeholder="Số điện thoại">
+                <i style="color:red">@ViewData["Loi6"]</i>
+            </div>
+        </div>
+        <div class="input-group mg-t-15">
+            <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-eye"></i></span>
+            <div class="nk-int-st">
+                <input type="date" name="Ngaysinh" class="form-control" placeholder="Ngày sinh">
+            </div>
+        </div>
+        <br />
+        <button class="btn-primary btn-md btn-block btn notika-add-todo waves-effect" type="submit">ĐĂNG KÝ</button>
+        <a href="#l-login" data-ma-action="nk-login-switch" data-ma-block="#l-login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow"></i></a>
+    }
+</div>
+<script>
+function setInputFilter(textbox, inputFilter) {
+        ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+            textbox.addEventListener(event, function () {
+                if (inputFilter(this.value)) {
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                }
+            });
+        });
+    }
+
+    // Restrict input to digits and '.' by using a regular expression filter.
+    setInputFilter(document.getElementById("myTextBox"), function (value) {
+        return /^\d*\.?\d*$/.test(value);
+    });</script>

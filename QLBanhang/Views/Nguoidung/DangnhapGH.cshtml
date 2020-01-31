@@ -1,0 +1,42 @@
+﻿@*<li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
+            <img src="~/Anhdd/@ViewBag.dd" style="width:25px;height:25px">@ViewBag.LOGI
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href=@Url.Action("Dangnhap", "Nguoidung")>
+                    @ViewBag.LG
+                </a>
+                <a href="@Url.Action("inf", "Nguoidung")">   @ViewBag.inf</a>
+            </li>
+            <li>
+                <a href=@Url.Action("Dangky", "Nguoidung")>
+                    @ViewBag.RA
+                </a>
+                <a href=@Url.Action("Dangxuat", "Nguoidung")>
+                    @ViewBag.LO
+                </a>
+            </li>
+        </ul>
+    </li>*@
+
+
+<li class="dropdown active">
+    <a href=@Url.Action("Dangnhap", "Nguoidung")>
+        @ViewBag.dd
+    </a>
+    <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
+        @ViewBag.LOGI
+    </a>
+    <ul class="dropdown-menu">
+        <li>
+            <a href="@Url.Action("profile", "Nguoidung")">   @ViewBag.inf</a>
+            <a href=@Url.Action("Dangxuat", "Nguoidung")>
+                @ViewBag.LO
+            </a>
+        </li>
+    </ul>
+</li>
+
+
+

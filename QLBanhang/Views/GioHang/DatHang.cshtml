@@ -1,0 +1,195 @@
+﻿@using QLBanhang.Models
+@model List<Giohang>
+@{
+    ViewBag.Title = "Đơn Đặt Hàng";
+    Layout = "~/Views/_LayoutUser.cshtml";
+}
+<div class="main ">
+    <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                <h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Thông tin hàng hóa</font></font></h1>
+                <div class="goods-page">
+                    <div class="goods-data clearfix">
+                        <div class="table-wrapper-responsive">
+                            <table summary="Shopping cart">
+                                <tbody>
+                                    <tr>
+                                        <th class="goods-page-ref-no"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Mã sản phẩm</font></font></th>
+                                        <th class="goods-page-image"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hình ảnh</font></font></th>
+                                        <th class="goods-page-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Thông tin</font></font></th>
+                                        <th class="goods-page-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dung tích</font></font></th>
+                                        <th class="goods-page-quantity"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Số lượng</font></font></th>
+                                        <th class="goods-page-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Đơn giá</font></font></th>
+                                        <th class="goods-page-total"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Toàn bộ</font></font></th>
+                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="goods-page-ref-no">
+                                                <font style="vertical-align: inherit;">
+                                                    @item.iMaMH
+                                                </font>
+                                            </td>
+                                            <td class="goods-page-image">
+                                                <a href="javascript:;"><img src="~/Hinhanh/@item.sAnhbia " alt="@item.sTenMH"></a>
+                                            </td>
+                                            <td class="goods-page-description">
+                                                <h3><a href="@Url.Action("Details","Hang", new { id =item.iMaMH})"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@item.sTenMH</font></font></a></h3>
+                                                <p>
+                                                    <font style="vertical-align: inherit;">
+                                                        <font style="vertical-align: inherit;">Xuất Xứ</font>
+                                                    </font>
+                                                    <strong>
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">@item.sXuatxu</font>
+                                                        </font>
+                                                    </strong>
+                                                </p>
+                                                @*<em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Thông tin thêm ở đây</font></font></em>*@
+                                            <td>
+                                                @item.iDungtich ml
+                                            </td>
+                                            <td class="goods-page-quantity">
+                                                @item.iSoluong
+                                            </td>
+                                            @if (item.iKhuyenmai == 0)
+                                            {
+                                                <td class="goods-page-price">
+                                                    <strong><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @String.Format("{0:0,0}", item.dDongia)</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VNĐ</font></font></strong>
+                                                </td>
+                                                <td class="goods-page-total">
+                                                    <strong><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @String.Format("{0:0,0}", item.dThanhtien)</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VNĐ</font></font></strong>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td class="goods-page-price">
+                                                    <strong><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @String.Format("{0:0,0}", item.dTienKM)</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VNĐ</font></font></strong>
+                                                </td>
+                                                <td class="goods-page-total">
+                                                    <strong><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @String.Format("{0:0,0}", item.dThanhtienKM)</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VNĐ</font></font></strong>
+                                                </td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="shopping-total" style="width:300px">
+                            <ul>
+                                <li>
+                                    <em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tổng số lượng </font></font></em>
+                                    <strong class="price"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @ViewBag.Tongsoluong </font></font></strong>
+                                </li>
+                                <li class="shopping-total-price">
+                                    <em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tổng tiền </font></font></em>
+                                    <font style="vertical-align: inherit;"><strong class="price"><font style="vertical-align: inherit;">VNĐ</font></strong></font><strong class="price"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> @String.Format("{0:0,0}", ViewBag.Tongtien)</font></font></span><font style="vertical-align: inherit;"></font></strong>
+                                </li>
+
+                                @{
+                                    KHACHHANG kh = (KHACHHANG)Session["Taikhoan"];
+                                }
+                                <table align="center">
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.ValidationSummary(true)
+                                        if (kh == null)
+                                        {
+                                            <tr style="height:40px">
+                                                <td> Tên khách hàng: </td>
+                                                <td style="font-weight:bold">
+                                                    <input oninvalid="alert('Xin vui nhập họ và tên!');" required style="font-weight:bold" type="text" maxlength="50" name="TenNgDat" />
+                                                </td>
+                                            </tr>
+                                            <tr style="height:40px">
+                                                <td> Địa chỉ: </td>
+                                                <td style="font-weight:bold">
+                                                    <input oninvalid="alert('Xin vui nhập địa chỉ giao hàng!');" required style="font-weight:bold" type="text" maxlength="250" name="DiaChiGiao" />
+                                                </td>
+                                            </tr>
+                                            <tr style="height:40px">
+                                                <td> Điện thoại: </td>
+                                                <td style="font-weight:bold">
+                                                    <input oninvalid="alert('Xin vui nhập số điện thoại!');" required style="font-weight:bold" id="myTextBox"type="text" maxlength="11" name="SDT" />
+                                                </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr style="height:40px">
+                                                <td> Tên khách hàng: </td>
+                                                <td style="font-weight:bold"> @kh.HoTen </td>
+                                            </tr>
+                                            <tr style="height:40px">
+                                                <td> Địa chỉ: </td>
+                                                <td style="font-weight:bold"> @kh.DiachiKH</td>
+                                            </tr>
+                                            <tr style="height:40px">
+                                                <td> Điện thoại: </td>
+                                                <td style="font-weight:bold"> @kh.DienthoaiKH </td>
+                                            </tr>
+                                        }
+                                        ///////////////////
+                                        <tr style="height:40px">
+                                            <td> Ngày đặt: </td>
+                                            <td style="font-weight:bold"> @DateTime.Now.ToShortDateString() </td>
+                                        </tr>
+                                        /////////////
+                                        <tr style="height:40px">
+                                            <td> Ngày giao hàng: </td>
+                                            <td style="font-weight:bold"><input oninvalid="alert('Xin vui lòng chọn ngày giao hàng!');" id="listingDateOpen" required type="date" name="Ngaygiao"/></td>
+                                        </tr>
+                                        <tr style="height:40px">
+                                            <td></td>
+                                            <td>
+                                                <input class="btn btn-primary " style="color:white" type="submit" value="Đồng Ý Đặt Hàng" />
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </ul>
+                            <a class="fa fa-shopping-cart btn btn-default " style="color:white" @Html.ActionLink("Tiếp tục mua sắm ", "Index", "Hang")</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+    </div>
+</div>
+<script>function setInputFilter(textbox, inputFilter) {
+        ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+            textbox.addEventListener(event, function () {
+                if (inputFilter(this.value)) {
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                }
+            });
+        });
+    }
+
+    // Restrict input to digits and '.' by using a regular expression filter.
+    setInputFilter(document.getElementById("myTextBox"), function (value) {
+        return /^\d*\.?\d*$/.test(value);
+    });
+    let today = new Date(),
+        day = today.getDate()+1,
+        month = today.getMonth() + 1, //January is 0
+        year = today.getFullYear();
+    if (day < 10) {
+        day = '0' + day
+    }
+    if (month < 10) {
+        month = '0' + month
+    }
+    today = year + '-' + month + '-' + day;
+    document.getElementById("listingDateOpen").setAttribute("min", today);
+    document.getElementById("listingDateOpen").setAttribute("value", today);
+    </script>

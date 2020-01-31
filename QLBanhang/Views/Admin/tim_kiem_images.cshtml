@@ -1,0 +1,91 @@
+﻿@using QLBanhang.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<Image>
+@{
+    ViewBag.Title = "tim_kiem_images";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-windows"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>IMAGES</h2>
+                                    <p>Chào mừng đền với sản phẩm <span class="bread-ntd">Natruliss</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+                            <div class="breadcomb-report">
+                                <button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="basic-tb-hd">
+                        <h2>XEM IMAGES</h2>
+                        <p>Yêu cầu các quản trị viên bảo mật thông tin cá nhân riêng tư của khách hàng.</p>
+                        <a class="btn-primary btn-md btn-block btn notika-add-todo waves-effect" type="submit" href="@Url.Action("them_image", "Admin")">
+                            Đăng Images
+                        </a>
+                    </div>
+                    <div class="table-responsive">
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th> Tên Images </th>
+                                    <th> URL Images </th>
+                                    <th> Ngày đăng </th>
+                                    <th> Theo mat hang</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a class="btn-primary btn-md btn-block btn notika-add-todo waves-effect" type="submit" href="@Url.Action("sua_image","Admin", new { id = item.ID})">Sửa</a>
+                                            <a class="btn-primary btn-md btn-block btn notika-add-todo waves-effect" type="submit" href="@Url.Action("xoa_image","Admin", new { id = item.ID})">Xóa</a>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.Name_Image)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.Id_image)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.Date)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.MaMH)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

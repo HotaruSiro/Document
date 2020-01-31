@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index3";
+    Layout = null;
+}
+
+@foreach (var mathang in Model)
+{
+    <div>
+        <div class="product-item">
+            <div class="pi-img-wrapper">
+                <img alt="@mathang.TenMH" src="~/Hinhanh/@mathang.Anhbia" class="img-responsive" style="width:100px;height:100px">
+            </div>
+            <h3><a href="@Url.Action("Details","Hang", new { id =mathang.MaMH})">@mathang.TenMH </a></h3>
+            <div class="pi-price">@String.Format("{0:0,0}", mathang.Giaban) VNĐ</div>
+            <a class="btn btn-default add2cart" href="@Url.Action("ThemGiohang","GioHang",new { @iMaMH=@mathang.MaMH,@strURL=Request.Url.ToString() })">Add to cart</a>
+            
+        </div>
+    </div>
+}
+

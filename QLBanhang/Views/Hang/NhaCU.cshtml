@@ -1,0 +1,11 @@
+﻿
+@model  IEnumerable<QLBanhang.Models.NHACUNGUNG>
+
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("SPTheoNCU", "Hang", new {id=item.MaNCC})" class="list-group-item">
+            @item.TenNCC
+        </a>
+
+    }
+
