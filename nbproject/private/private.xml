@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/gui/EmployeeList.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/InventoryManagement.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/bll/ChucvuBLL.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/dal/BangcapDAL.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/bll/CongviecBLL.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/hibernate.cfg.xml</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/dal/BaseDAL.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/dto/Chucvu.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/gui/IfEmployee.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/dto/Bangcap.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/dal/EmployeeDAL.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/bll/BangcapBLL.java</file>
+            <file>file:/E:/IT/Java/java/Excercise01_PVHieu/src/ims/gui/Dashboard.java</file>
+        </group>
+    </open-files>
+</project-private>
